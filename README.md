@@ -36,7 +36,7 @@ This document serves as a reference guide for the Enhanced Auth API, a robust au
 For detailed documentation, please refer to the [API Documentation](https://docs.google.com/document/d/1m1pCd1ZOTXjORR9HZHn7vAx2HrvXlATq9Bc2rwixmJQ/edit?usp=sharing).
 
 ## Postman Collection
-Access the [Postman Collection]() for testing the API endpoints.
+Access the [Postman Collection](https://www.postman.com/descent-module-cosmologist-51137549/workspace/enhanched-authentication-api/request/21309452-48957a52-752e-4dc0-b59f-72bd5aa24410) for testing the API endpoints.
 
 ## Deployment
 This application is hosted on [AuthPlus Deployment](https://enhanced-authentication-api-0mtk.onrender.com/). Please note that due to inactivity of the URL, the first-time access may experience a delay of 50-60 seconds.
