@@ -6,7 +6,8 @@ const config = {
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || "sawan",
     SESSION_KEY: process.env.SESSION_KEY || "sawan",
-    SALT_KEY: process.env.SALT_KEY || "20"
+    SALT_KEY: process.env.SALT_KEY || "20",
+    HOST: process.HOST || "http://localhost:4000"
 }
 
 module.exports = config;

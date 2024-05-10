@@ -85,7 +85,7 @@ async function generateAndSaveToken(user) {
 passport.use(new GoogleStrategy({
     clientID: config.GOOGLE_CLIENT_ID,
     clientSecret: config.GOOGLE_CLIENT_SECRET,
-    callbackURL: `http://localhost:${config.PORT}/auth/google/callback`
+    callbackURL: `${config.HOST}/auth/google/callback`
 },
     async function (accessToken, refreshToken, profile, cb) {
         try {
