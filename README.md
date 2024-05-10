@@ -1,6 +1,7 @@
-# Book Management System
+# Enhanced Auth API Reference
 
-This project is a Book Management System designed to help users manage their book collections effectively. It provides features for registering users, adding, updating, and deleting books, as well as filtering books by various criteria.
+## Introduction
+This document serves as a reference guide for the Enhanced Auth API, a robust authentication and authorization system designed to provide secure access control for web applications.
 
 ## Installation and Setup
 1. Clone the repository to your local machine.
@@ -12,33 +13,33 @@ This project is a Book Management System designed to help users manage their boo
 ## Usage
 1. Register a user account using the `/register` endpoint.
 2. Log in with your registered credentials using the `/login` endpoint.
-3. Use the provided endpoints to manage your book collection:
-   - `/books` GET: Retrieve all books or filter by author or publication year.
-   - `/books` POST: Add a new book to the collection.
-   - `/books/:id` PUT: Update an existing book by ID.
-   - `/books/:id` DELETE: Delete a book by ID.
+3. Utilize the provided endpoints to manage user profiles and authentication:
+   - `/profile` GET: Retrieve user profile information.
+   - `/profile` PUT: Update user profile information.
+   - `/profile/status` PUT: Activate or deactivate user profile.
+   - `/profiles` GET: Retrieve a list of user profiles based on user role.
+   - `/profiles/all` GET: Retrieve a list of all user profiles (admin only).
+   - `/auth/google` GET: Initiate Google OAuth 2.0 authentication.
+   - `/auth/google/callback` GET: Handle Google OAuth 2.0 authentication callback.
 
 ## Project Overview
 - **registerUser.js**: Handles user registration and token generation.
 - **loginUser.js**: Manages user authentication and token issuance.
-- **book.js**: Contains CRUD operations for books (addBook, getFilterBooks, updateBook, deleteBook).
+- **profile.js**: Contains CRUD operations for user profiles (getProfileList, updateProfile, updateProfileStatus, getAllProfileList).
 - **Routes/Route.js**: Defines routes for pre-auth and post-auth endpoints.
 - **middleware/verifyToken.js**: Middleware function to verify JWT tokens.
 - **Models/User.js**: Schema and model for User data.
-- **Models/Book.js**: Schema and model for Book data.
 - **env.config.js**: Configuration file for environment variables.
 - **index.js**: Main entry point for the application.
 
 ## Documentation
-For detailed documentation, please refer to the [Project Proposal Document]([Tech Doc](https://docs.google.com/document/d/1VN3ZZLOhlTbNQnToNKs6BFdVNkoJnXGp2z9U9StR2ko/edit?usp=sharing)).
-
-## Flow Diagram
-([Architecture](https://drive.google.com/file/d/1V1mk3-SFum74OpPqhHxOppJ8ct1qY5Z1/view?usp=sharing))
+For detailed documentation, please refer to the [API Documentation](/api-docs).
 
 ## Postman Collection
-[Postman Collection]([Postman collection](https://www.postman.com/descent-module-cosmologist-51137549/workspace/book-management-system/collection/21309452-d87f1395-b436-44b4-9b87-0a99e517a7ca?action=share&creator=21309452))
+Access the [Postman Collection]() for testing the API endpoints.
 
 ## Deployment
-This application is hosted on [Book-Management](https://book-management-lwlg.onrender.com).
+This application is hosted on [AuthPlus Deployment](https://enhanced-authentication-api-0mtk.onrender.com/). Please note that due to inactivity of the URL, the first-time access may experience a delay of 50-60 seconds.
 
-## Note: Due to inactivity of URL for so long will cause delay of 50-60 seconds for the first time (Render free service issue)
+---
+This documentation provides an overview of the Enhanced Auth API, including installation instructions, usage guidelines, project overview, and deployment details. For any further inquiries or assistance, please refer to the provided documentation or reach out to the project maintainers.
