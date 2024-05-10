@@ -3,14 +3,14 @@ const { Router } = require('express');
 function defineRoutes(app, preAuthRoutes, postAuthRoutes) {
     const router = Router();
 
-    // Health check route
+    // Health check of server
     router.get('/healthcheck', (req, res) => {
         res.status(200).json({ message: "Server is up!!!" });
     });
 
     // Define pre-auth routes
     preAuthRoutes.forEach(route => {
-        const { method, path, functionName } = route;
+        const { method, path, functionName } = route
         router[method.toLowerCase()](path, functionName);
     });
 
@@ -24,6 +24,7 @@ function defineRoutes(app, preAuthRoutes, postAuthRoutes) {
         router[method.toLowerCase()](path, functionName);
     });
 
+    // Add router to express app
     app.use(router);
 }
 

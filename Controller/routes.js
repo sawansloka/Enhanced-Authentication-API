@@ -1,49 +1,78 @@
-const registerUser = require("./register");
-const loginUser = require("./login");
-const { getFilterBooks, addBook, updateBook, deleteBook } = require("./book");
+const { registerUser, registerAdminUser } = require("./register");
+const { loginUser, googleLogin, googleCallBack } = require("./login");
+const { getProfileList, updateProfile, updateProfileStatus, getAllProfileList } = require("./profile");
+const logoutUser = require('./logout');
 
 const routes = [
     {
-        path: "/register",
+        path: "/users/register",
         method: "POST",
         name: "User Registration",
         describe: "Register a new user",
         functionName: registerUser
     },
     {
-        path: "/login",
+        path: "/admin/register",
+        method: "POST",
+        name: "Admin User Registration",
+        describe: "Register a new admin user",
+        functionName: registerAdminUser
+    },
+    {
+        path: "/users/login",
         method: "POST",
         name: "User Login",
         describe: "Authenticate user login",
         functionName: loginUser
     },
     {
-        path: "/books",
+        path: "/auth/google",
         method: "GET",
-        name: "Get All Filtered Books",
-        describe: "Get all Filtered books",
-        functionName: getFilterBooks
+        name: "Login Via Google",
+        describe: "Login Via Google",
+        functionName: googleLogin
     },
     {
-        path: "/books",
+        path: "/auth/google/callback",
+        method: "GET",
+        name: "Google Callback",
+        describe: "Callback API for google",
+        functionName: googleCallBack
+    },
+    {
+        path: "/users/logout",
         method: "POST",
-        name: "Add Book",
-        describe: "Add a new book",
-        functionName: addBook
+        name: "User Logout",
+        describe: "Authenticate user logout",
+        functionName: logoutUser
     },
     {
-        path: "/books/:id",
+        path: "/profiles",
+        method: "GET",
+        name: "Get Profile List",
+        describe: "Get Profiles List",
+        functionName: getProfileList
+    },
+    {
+        path: "/profiles/update",
         method: "PUT",
-        name: "Update Book",
-        describe: "Update an existing book",
-        functionName: updateBook
+        name: "Update profile",
+        describe: "Update an existing profile",
+        functionName: updateProfile
     },
     {
-        path: "/books/:id",
-        method: "DELETE",
-        name: "Delete Book",
-        describe: "Delete a book",
-        functionName: deleteBook
+        path: "/profiles/update-status",
+        method: "PUT",
+        name: "Update Profile Status",
+        describe: "Set profile active or inactive",
+        functionName: updateProfileStatus
+    },
+    {
+        path: "/profiles/all",
+        method: "GET",
+        name: "Get All Profiles",
+        describe: "Get all Profiles",
+        functionName: getAllProfileList
     }
 ];
 

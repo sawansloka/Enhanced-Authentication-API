@@ -1,9 +1,21 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
+    imageUrl: {
+        type: String,
+        default: null
+    },
     name: {
         type: String,
-        required: true,
+        required: true
+    },
+    bio: {
+        type: String,
+        default: null
+    },
+    phone: {
+        type: Number,
+        default: null
     },
     email: {
         type: String,
@@ -13,9 +25,24 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    date: {
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    },
+    isPublic: {
+        type: Boolean,
+        default: false,
+    },
+    isActive: {
+        type: Boolean,
+        default: true,
+    },
+    createdAt: {
         type: Date,
         default: Date.now
+    },
+    token: {
+        type: String
     }
 });
 
