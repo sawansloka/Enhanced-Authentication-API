@@ -33,7 +33,7 @@ This document serves as a reference guide for the Enhanced Auth API, a robust au
 - **index.js**: Main entry point for the application.
 
 ## Documentation
-For detailed documentation, please refer to the [API Documentation](/api-docs).
+For detailed documentation, please refer to the [API Documentation](https://docs.google.com/document/d/1m1pCd1ZOTXjORR9HZHn7vAx2HrvXlATq9Bc2rwixmJQ/edit?usp=sharing).
 
 ## Postman Collection
 Access the [Postman Collection]() for testing the API endpoints.
