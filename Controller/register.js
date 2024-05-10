@@ -105,7 +105,8 @@ async function checkUserExists(email) {
  * @returns {string} - The hashed password.
  */
 async function hashPassword(password) {
-    const salt = await bcrypt.genSalt(config.SALT_KEY);
+    const saltRounds = parseInt(config.SALT_KEY);
+    const salt = await bcrypt.genSalt(saltRounds);
     return bcrypt.hash(password, salt);
 }
 
