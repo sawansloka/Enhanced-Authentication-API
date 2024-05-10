@@ -48,7 +48,8 @@ async function updateProfile(req, res) {
         // Hash the password if provided
         let hashedPassword = undefined;
         if (password) {
-            const salt = await bcrypt.genSalt(config.SALT_ROUNDS);
+            const saltRounds = parseInt(config.SALT_KEY);
+            const salt = await bcrypt.genSalt(saltRounds);
             hashedPassword = await bcrypt.hash(password, salt);
         }
 

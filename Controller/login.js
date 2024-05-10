@@ -93,7 +93,8 @@ passport.use(new GoogleStrategy({
             let token;
             if (!userInfo || userInfo.length === 0) {
                 // If user not found, create a new user
-                const salt = await bcrypt.genSalt(config.SALT_KEY);
+                const saltRounds = parseInt(config.SALT_KEY);
+                const salt = await bcrypt.genSalt(saltRounds);
                 const hashedPassword = await bcrypt.hash(config.JWT_SECRET, salt);
                 const newUser = new User({
                     email: profile._json.email,
