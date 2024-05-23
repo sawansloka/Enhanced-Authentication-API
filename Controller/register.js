@@ -32,7 +32,10 @@ async function register(req, res, isAdmin = false) {
         validateInput(name, email, password, confirmPassword);
 
         // Check if user already exists
-        await checkUserExists(email);
+        const userExists = await checkUserExists(email);
+        if (userExists) {
+            return res.status(409).json({ message: 'User already exists' });
+        }
 
         // Hash the password
         const hashedPassword = await hashPassword(password);
@@ -93,9 +96,7 @@ function validateInput(name, email, password, confirmPassword) {
  */
 async function checkUserExists(email) {
     const user = await User.findOne({ email });
-    if (user) {
-        throw new Error('User already exists');
-    }
+    return !!user;
 }
 
 /**
@@ -159,13 +160,19 @@ async function generateToken(user) {
  * @param {Object} res - The response object.
  */
 function handleError(error, res) {
-    if (error.code === 11000) {
-        // Duplicate key error (e.g., email already exists)
-        res.status(400).json({ message: 'Email already exists' });
-    } else {
-        console.error('Error saving user to database:', error);
-        res.status(500).json({ message: 'Internal server error' });
+    let statusCode = 500;
+    let message = 'Internal server error';
+
+    if (error.message === 'Provide all fields' ||
+        error.message === 'Invalid email format' ||
+        error.message === 'Invalid name format' ||
+        error.message === 'Password must contain only letters, numbers, and the following special characters: !@#$%^&*' ||
+        error.message === 'Passwords do not match') {
+        statusCode = 400;
+        message = error.message;
     }
+
+    res.status(statusCode).json({ message });
 }
 
 module.exports = { registerUser, registerAdminUser };

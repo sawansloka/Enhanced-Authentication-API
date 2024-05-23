@@ -37,8 +37,7 @@ async function loginUser(req, res) {
         res.json({ token });
 
     } catch (error) {
-        console.error('Error in loginUser:', error);
-        res.status(500).json({ message: 'Internal server error.' });
+        handleError(error, res);
     }
 }
 
@@ -146,6 +145,32 @@ async function googleCallBack(req, res) {
         // Successful authentication, send back user data and JWT token
         res.json({ token: req.user.token });
     });
+}
+
+/**
+ * Handles errors that occur during user registration.
+ * 
+ * @param {Error} error - The error object.
+ * @param {Object} res - The response object.
+ */
+function handleError(error, res) {
+    let statusCode = 500;
+    let message = 'Internal server error';
+
+    if (error.message === 'Provide both email and password' ||
+        error.message === 'Invalid email format' ||
+        error.message === 'Invalid name format' ||
+        error.message === 'Password must contain only letters, numbers, and the following special characters: !@#$%^&*' ||
+        error.message === 'Passwords do not match' ||
+        error.message === 'User already exists') {
+        statusCode = 400;
+        message = error.message;
+    } else if (error.message === 'Invalid credentials') {
+        statusCode = 401;
+        message = error.message;
+    }
+
+    res.status(statusCode).json({ message });
 }
 
 module.exports = { loginUser, googleLogin, googleCallBack };
