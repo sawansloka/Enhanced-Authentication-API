@@ -44,7 +44,7 @@ async function register(req, res, isAdmin = false) {
         await user.save();
 
         // Generate and save JWT token
-        const token = await generateAndSaveToken(user);
+        const token = await generateToken(user);
 
         // Send the token in the response
         res.json({ token });
@@ -142,15 +142,13 @@ function createUserInstance(name, email, hashedPassword, isAdmin, imageUrl, bio,
  * @param {Object} user - The user object.
  * @returns {string} - The generated JWT token.
  */
-async function generateAndSaveToken(user) {
+async function generateToken(user) {
     const payload = {
         userId: user._id,
         email: user.email,
         isAdmin: user.isAdmin
     };
     const token = jwt.sign(payload, config.JWT_SECRET, { expiresIn: '10m' });
-    user.token = token;
-    await user.save();
     return token;
 }
 

@@ -7,9 +7,9 @@ async function logoutUser(req, res) {
     // Check if the user is authenticated
     if (req.isAuthenticated()) {
         try {
-            // Set token to null in the user document
+            // Set isExpired to null in the user document
             const userId = req.user.userId;
-            await User.findByIdAndUpdate(userId, { token: null });
+            await User.findByIdAndUpdate(userId, { isExpired: true });
 
             // Log out the user
             req.logout(function (err) {

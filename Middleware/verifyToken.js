@@ -22,10 +22,10 @@ async function verifyToken(req, res, next) {
         }
 
         try {
-            // Check if token matches the one stored in the user document
+            // Check if isExpired is true in the user document
             const user = await User.find({ email: decoded.email });
 
-            if (!user[0] || user[0].token !== token) {
+            if (!user[0] || user[0].isExpired) {
                 return res.status(401).json({ auth: false, message: 'Login again to get a valid token' });
             }
 
