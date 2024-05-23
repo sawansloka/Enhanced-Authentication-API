@@ -31,7 +31,7 @@ async function loginUser(req, res) {
         }
 
         // If authentication is successful, generate a new JWT token with user ID payload
-        const token = await generateAndSaveToken(user);
+        const token = await generateToken(user);
 
         // Send the new token in the response
         res.json({ token });
@@ -70,15 +70,13 @@ function validateUserInput(email, password) {
  * @param {Object} user - The user object.
  * @returns {string} - The generated JWT token.
  */
-async function generateAndSaveToken(user) {
+async function generateToken(user) {
     const payload = {
         userId: user._id,
         email: user.email,
         isAdmin: user.isAdmin
     };
     const token = jwt.sign(payload, config.JWT_SECRET, { expiresIn: '10m' });
-    user.token = token;
-    await user.save();
     return token;
 }
 
@@ -104,7 +102,7 @@ passport.use(new GoogleStrategy({
                 });
                 userInfo = await newUser.save();
             }
-            token = await generateAndSaveToken(userInfo[0]);
+            token = await generateToken(userInfo[0]);
 
             // Callback with user data and token
             return cb(null, { user: userInfo, token: token });

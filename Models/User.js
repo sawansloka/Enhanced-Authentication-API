@@ -41,8 +41,9 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    token: {
-        type: String
+    isExpired: {
+        type: Boolean,
+        default: false,
     }
 });
 
